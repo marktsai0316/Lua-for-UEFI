@@ -97,6 +97,17 @@
 #define LUA_CPATH_DEFAULT \
         LUA_CDIR"?.dll;" LUA_CDIR"loadall.dll;" ".\\?.dll"
 
+#elif defined(UEFI_C_SOURCE)
+#define LUA_VDIR    LUA_VERSION_MAJOR "." LUA_VERSION_MINOR "/"
+#define LUA_ROOT    "\\Efi\\StdLib\\lib\\"
+#define LUA_LDIR    LUA_ROOT "Lua\\"
+#define LUA_CDIR    LUA_ROOT "Lua\\"
+#define LUA_PATH_DEFAULT  \
+        LUA_LDIR"?.lua;"  LUA_LDIR"?\\init.lua;" \
+        LUA_CDIR"?.lua;"  LUA_CDIR"?\\init.lua;" ".\\?.lua"
+#define LUA_CPATH_DEFAULT \
+        LUA_CDIR"?.efi;" LUA_CDIR"loadall.efi;" ".\\?.efi"
+
 #else           /* }{ */
 
 #define LUA_VDIR    LUA_VERSION_MAJOR "." LUA_VERSION_MINOR "/"
@@ -117,6 +128,8 @@
 ** and is not Windows. (On Windows Lua automatically uses "\".)
 */
 #if defined(_WIN32) || defined (_DOS_WATCOM) || defined(_EFI)
+#define LUA_DIRSEP  "\\"
+#elif defined(UEFI_C_SOURCE)
 #define LUA_DIRSEP  "\\"
 #else
 #define LUA_DIRSEP  "/"

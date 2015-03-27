@@ -211,6 +211,30 @@ static lua_CFunction ll_sym (lua_State *L, void *lib, const char *sym) {
 
 /* }====================================================== */
 
+#elif defined(UEFI_C_SOURCE)
+/*
+** {======================================================================
+** This is an implementation of loadlib for Windows using native functions.
+** =======================================================================
+*/
+//TODO-start
+static void ll_unloadlib (void *lib) {
+  (void)(lib);  /* not used */
+}
+
+static void *ll_load (lua_State *L, const char *path, int seeglb) {
+  (void)(path); (void)(seeglb);  /* not used */
+  lua_pushliteral(L, DLMSG);
+  return NULL;
+}
+
+static lua_CFunction ll_sym (lua_State *L, void *lib, const char *sym) {
+  (void)(lib); (void)(sym);  /* not used */
+  lua_pushliteral(L, DLMSG);
+  return NULL;
+}
+//TODO-end
+/* }====================================================== */
 
 #else
 /*

@@ -218,6 +218,11 @@ static lua_CFunction ll_sym (lua_State *L, void *lib, const char *sym) {
 ** =======================================================================
 */
 //TODO-start
+#undef LIB_FAIL
+#define LIB_FAIL    "absent"
+
+#define DLMSG   "dynamic libraries not enabled; check your Lua installation"
+
 static void ll_unloadlib (void *lib) {
   (void)(lib);  /* not used */
 }

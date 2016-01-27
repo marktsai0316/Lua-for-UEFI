@@ -297,7 +297,7 @@ FreeDisplayStrings (
   @param  OpCode                 The input opcode buffer.
 
   @return The prompt string id.
-
+  取得OpCode內的 prompt string id
 **/
 EFI_STRING_ID
 GetPrompt (
